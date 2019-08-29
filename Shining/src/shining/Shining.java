@@ -19,6 +19,7 @@ public class Shining {
     public static void orig(){
     System.out.println("All work and no play makes Jack a dull boy.");
     }
+    
     //multiplies original by 10
     public static void ten(){
         orig();
@@ -32,6 +33,7 @@ public class Shining {
         orig();
         orig();
     }
+    
     //multiplies the ten statements by 10 to make 100
     public static void hundred(){
         ten();
