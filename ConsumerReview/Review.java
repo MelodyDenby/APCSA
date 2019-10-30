@@ -205,10 +205,64 @@ public class Review {
      }
      return sum;
     }
-  }
 
+    /*
+    Activity 2.5: Determine star rating
+    public static int starRating(String fileName){
+      double totalSentiment= totalSentiment(fileName);
+      if (totalSentiment<-10) {
+        return 0;
+      }
+      else if (totalSentiment<0) {
+        return 1;
+      }
+    }
+*/
+    //Activity 3
+public static String fakeReview(String fileName)
+   {
+     String reviewWords = Review.textToString(fileName);
+     String oneWord;
+     String fakeReview = "";
+    
+     // doing the going through each word by finding spaces
+     int spacePosition = reviewWords.indexOf(" ");
+     while (spacePosition != -1)
+     {
+       oneWord = reviewWords.substring(0, spacePosition);
+       //remove 
+       reviewWords = reviewWords.substring(spacePosition +1);
+       // Oh snap its an adjective replace that
+       if (oneWord.substring(0, 1).equals ("*"))
+       {
+         String punctuation = getPunctuation(oneWord);
+         String randomWord = randomPositiveAdj();
+         fakeReview = fakeReview + randomWord + punctuation;
+       }
+       else
+       {
+         fakeReview += oneWord; // add word if it is not an adjective
+       }
+       fakeReview += SPACE; 
+       spacePosition = reviewWords.indexOf(" ");
+     } 
+     // processing that last word
+     if (reviewWords.substring(0, 1).equals ("*"))
+     {
+       String punctuation = getPunctuation(reviewWords);
+       String randomWord = randomPositiveAdj();
+       fakeReview = fakeReview + randomWord + punctuation;
+     }
+     else
+     {
+       fakeReview += reviewWords; // add word if it is not an adjective
+     }
+     return fakeReview;
+   } 
 
   public static void main(String[] args){
     reviewSentiment();
+    System.out.println("Activity 2 option 1- the sentiment of your review is " +totalSentiment("simpleReview.txt"));
+    System.out.println("Activity 2 option 1- the sentiment of the Bic \"For Her\" Pens review is " +totalSentiment("pen.txt"));
   }
 }
